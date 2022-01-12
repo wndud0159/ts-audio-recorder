@@ -77,22 +77,24 @@ const useRecorder = (): [string, boolean, () => void, () => void, () => void, an
     source.connect(analyser);
     //analyser.connect(audioCtx.destination);
 
-    draw();
+    const timer = setInterval(() => {
+      draw();
+    }, 100);
 
     function draw() {
       console.log("test");
       const WIDTH = canvas.current.width;
       const HEIGHT = canvas.current.height;
 
-      requestAnimationFrame(draw);
+      // requestAnimationFrame(draw);
 
       analyser.getByteTimeDomainData(dataArray);
 
-      canvasCtx.fillStyle = "rgb(200, 200, 200)";
+      canvasCtx.fillStyle = "black";
       canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
 
-      canvasCtx.lineWidth = 2;
-      canvasCtx.strokeStyle = "rgb(0, 0, 0)";
+      canvasCtx.lineWidth = 10;
+      canvasCtx.strokeStyle = "white";
 
       canvasCtx.beginPath();
 
